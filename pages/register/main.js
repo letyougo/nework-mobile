@@ -12,7 +12,7 @@ import './main.css'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
+
   components: { App },
   template: '<App/>'
 })
