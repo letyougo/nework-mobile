@@ -8,10 +8,12 @@ Vue.config.productionTip = false
 import ElementUI from 'element-ui'
 import '../../theme/index.css'
 Vue.use(ElementUI);
+import router from './router'
 import '../main.css'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  router,
   components: { App },
   template: '<App/>'
 })

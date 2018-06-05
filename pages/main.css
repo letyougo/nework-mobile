@@ -5,6 +5,7 @@ html,body,div,p,span,ul,li{
 div,p,span,ul,li{
   box-sizing: border-box;
   font-size: 14px;
+  font-family: "Microsoft YaHei";
 }
 button{
   width: 100%;
@@ -17,4 +18,17 @@ a{
 }
 ul,li{
   list-style: none;
+}
+.skill-title{
+  font-size: 30px;
+  color:#092235 ;
+  font-weight: bold;
+}
+.skill-desc{
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #092235 ;
+  font-weight: bold;
+  line-height: 40px;
 }
