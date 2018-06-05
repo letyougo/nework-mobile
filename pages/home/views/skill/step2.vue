@@ -1,28 +1,27 @@
 <template>
   <div class="skill2">
-    <p class="skill-title">nework</p>
-    <p class="skill-desc">你打算在什么地方开始工作</p>
-    <service-list :list="list" :active="active" @change="(i)=>active=i"></service-list>
-    <br/>
-    <el-form>
-      <el-form-item label="请输入具体的工作类型">
-        <el-input></el-input>
-      </el-form-item>
-    </el-form>
+    <div class="skill-top">
+      <p class="skill-title">nework</p>
+      <el-progress :percentage="20"></el-progress>
+      <p class="skill-desc">你打算在什么地方开始工作</p>
+      <service-list :list="list" :active="active" @change="(i)=>active=i"></service-list>
+      <br/>
+      <el-form>
+        <el-form-item label="请输入具体的工作类型">
+          <el-input></el-input>
+        </el-form-item>
+      </el-form>
+    </div>
+
+    <skill-bottom></skill-bottom>
 
 
-    <el-row>
-      <el-col :span="12">返回</el-col>
-      <el-col :span="12">
-        <el-button type="primary">下一步</el-button>
-      </el-col>
-    </el-row>
   </div>
 </template>
 <script>
 
   import serviceList from '../../components/service-list.vue'
-
+  import SkillBottom from '../../components/skill-bottom'
   export default {
     name: 'skill',
     data(){
@@ -48,15 +47,14 @@
       }
     },
     components: {
-      serviceList
+      serviceList,
+      SkillBottom
     }
   }
 
 </script>
 <style>
-  .skill2 {
-    padding: 0.3rem;
-  }
+
 
 
 </style>

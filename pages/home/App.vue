@@ -59,19 +59,7 @@ export default {
     line-height: 40px;
   }
 
-  .service-list{
-    width: 6.9rem;
-  }
-  .service-item{
-    width: 2.3rem;
-    height: 120px;
-    float: left;
-    text-align: center;
-  }
-  .service-item div{
-    padding-top: 40px;
-    padding-bottom: 10px;
-  }
+
 .service-item p{
   font-size: 14px;
   color: #092235 ;
