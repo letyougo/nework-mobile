@@ -1,32 +1,27 @@
 <template>
-  <div class="skill">
-    <div class="skill-top">
-      <p class="skill-title">nework</p>
-      <el-progress :percentage="20"></el-progress>
-      <p class="skill-desc">你打算在什么地方开始工作</p>
-      <service-list :list="list" :active="active" @change="(i)=>active=i"></service-list>
-      <br/>
-      <el-form>
-        <el-form-item label="请输入具体的工作类型">
-          <el-input></el-input>
-        </el-form-item>
-      </el-form>
+    <div class="edit-choose-skill">
+
+      <div class="choose-skill-top">
+        <h3>选择技能</h3>
+        <service-list :list="list"></service-list>
+        <el-form>
+          <el-form-item label="请输入具体的工作类型">
+            <el-input></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <skill-bottom></skill-bottom>
     </div>
-
-    <skill-bottom></skill-bottom>
-
-
-  </div>
 </template>
-<script>
 
-  import serviceList from '../../components/service-list.vue'
-  import SkillBottom from '../../components/skill-bottom'
+<script>
+  import serviceList from '../../../components/service-list.vue'
+  import skillBottom from '../../../components/skill-bottom'
   export default {
-    name: 'skill',
+    name: "edit-choose-skill",
     data(){
       return {
-        active:'0',
         list:[
           {name:'家政',url:'/static/imgs/jiazheng.png'},
           {name:'美容美甲',url:'/static/imgs/meijia.png'},
@@ -46,15 +41,19 @@
         ]
       }
     },
-    components: {
+    components:{
+      skillBottom,
       serviceList,
-      SkillBottom
     }
   }
-
 </script>
-<style>
 
-
-
+<style scoped>
+  .choose-skill-top{
+    padding: 0.3rem;
+  }
+  h3{
+    margin: 20px 0;
+    font-size: 30px;
+  }
 </style>

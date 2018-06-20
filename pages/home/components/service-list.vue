@@ -1,5 +1,6 @@
 <template>
   <div class="service-list">
+
     <table border="1" cellspacing="0">
       <tr v-for=" i in list.length/3">
         <!--{{list[i].name}}-->
@@ -13,6 +14,7 @@
           <div v-if="list[(i-1)*3+0].url">
             <img :src="list[(i-1)*3+1].url" width="50px" height="50px"/>
           </div>
+          
           <p>{{list[(i-1)*3+1].name}}</p>
         </td>
         <td >
@@ -40,7 +42,7 @@ export default {
     }
   },
   methods:{
-
+  
 
   }
 
@@ -57,7 +59,7 @@ export default {
   td.active{
     border-color: #33a2f9;
   }
-  table,table tr th, table tr td { border:1px solid #d2d2d2; }
+  table,table tr th, table tr td { border:1px solid rgba(0,0,0,0.05); }
   table {  min-height: 25px; line-height: 25px; text-align: center; border-collapse: collapse;}
 
 </style>

@@ -3,12 +3,14 @@
     <div class="app">
       <div class="home-top">
         <div class="top-left">
-          nework&nbsp;
+          Nework&nbsp;
         </div>
         <p>北京</p>
         <div class="top-right">
-          <a href="#">登录</a>
-          <a href="#">注册</a>
+          <router-link to="/login">资料</router-link>
+          <router-link to="/skill1">技能</router-link>
+          <router-link to="/login">登录</router-link>
+          <router-link to="/register">注册</router-link>
         </div>
       </div>
 
@@ -20,38 +22,61 @@
       <br>
       <el-input></el-input>
 
-      <service-list></service-list>
+      <div class="service">
+        <service-list :list="list" :active="active" @change="(i)=>active=i"></service-list>
+      </div>ds
 
-      <div class="service-rec">
-        <p class="service-rec-title">家政</p>
-        <div class="service-rec-item">
-          <img src="">
-          <p>美容美甲</p>
+
+      <div class="service-item">
+
+        <div class="service-item-content">
+          <img src="/static/imgs/zhongdiangong.png">
+          <p >美容美甲</p>
           <span>来做美容美甲吧</span>
         </div>
       </div>
       <br>
-      <div class="service-rec">
-        <p class="service-rec-title">家政</p>
-        <div class="service-rec-item">
-          <img src="">
-          <p>美容美甲</p>
+      <div class="service-item">
+        <div class="service-item-content">
+          <img src="/static/imgs/zhongdiangong.png">
+          <p >美容美甲</p>
+          <span>来做美容美甲吧</span>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-item-content">
+          <img src="/static/imgs/zhongdiangong.png">
+          <p >美容美甲</p>
           <span>来做美容美甲吧</span>
         </div>
       </div>
       <br>
+      <p class="service-rec-title">如何发布需求</p>
       <div class="service-rec">
-        <p class="service-rec-title">如何发布需求</p>
+
         <div class="service-rec-item">
-          <img src="">
+          <img src="/static/imgs/home-faqs.png">
+          <div>
+            <p>回答需求问卷</p>
+            <span>耗时1min左右，需要您简单选择几个问题，以便于服务人员清楚您的需要</span>
+          </div>
         </div>
-        <br>
+
         <div class="service-rec-item">
-          <img src="">
+          <img src="/static/imgs/home-price.png">
+          <div>
+            <p>回答需求问卷</p>
+            <span>耗时1min左右，需要您简单选择几个问题，以便于服务人员清楚您的需要</span>
+          </div>
         </div>
-        <br>
+
         <div class="service-rec-item">
-          <img src="">
+          <img src="/static/imgs/home-onsite.png">
+          <div>
+            <p>回答需求问卷</p>
+            <span>耗时1min左右，需要您简单选择几个问题，以便于服务人员清楚您的需要</span>
+          </div>
         </div>
       </div>
     </div>
@@ -85,7 +110,25 @@
     data(){
       return {
         radio3:'上海',
-        phone_region:'cn'
+        phone_region:'cn',
+        active:'0',
+        list:[
+          {name:'家政',url:'/static/imgs/jiazheng.png'},
+          {name:'美容美甲',url:'/static/imgs/meijia.png'},
+          {name:'健康',url:'/static/imgs/jianshen.png'},
+
+          {name:'摄影摄像',url:'/static/imgs/sheying.png'},
+          {name:'上门维修',url:'/static/imgs/weixiu.png'},
+          {name:'教育培训',url:'/static/imgs/peixun.png'},
+
+          {name:'数码维修',url:'/static/imgs/shumaweixiu.png'},
+          {name:'宠物',url:'/static/imgs/chongwu.png'},
+          {name:'活动',url:'/static/imgs/huodong.png'},
+
+          {name:'运动健身',url:'/static/imgs/yundong.png'},
+          {name:'婚礼策划',url:'/static/imgs/hunli.png'},
+          {name:'其它',url:'/static/imgs/qita.png'},
+        ]
       }
     },
     components:{
@@ -107,25 +150,21 @@
     /*padding: 0 50px;*/
   }
   .home-top{
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .home-top p{
     text-align: center;
     line-height: 30px;
   }
   .top-left{
-    position: absolute;
-    left: 0;
-    top: 0;
     vertical-align: middle;
     line-height: 30px;
     font-size: 20px;
     color: #092235;
   }
   .top-right{
-    position: absolute;
-    right: 0;
-    top: 0;
     vertical-align: middle;
     line-height: 30px;
     color: #008BF7;
@@ -136,18 +175,69 @@
     color: #091017;
     line-height: 40px;
   }
+  .service{
+    margin: 30px 0;
+  }
 
+  .service-item{
+    margin-bottom: 10px;
+  }
+  .service-item img{
+    height: 168px;
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+  }
+  .service-item p{
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 12px;
+  }
 
+  .service-item span{
+    font-size: 14px;
+    color: rgba(0,0,0,0.6);
+  }
   .service-rec-title{
     font-size: 24px;
     color: #092235;
     line-height: 50px;
   }
+  .service-rec-item{
+    height: 220px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .service-rec-item:nth-child(1){
+
+    background: linear-gradient(-135deg, #F1E8E3 0%, #DFCDC3 100%);
+    border-radius: 4px; ;
+  }
+  .service-rec-item:nth-child(2){
+
+    background:  linear-gradient(-135deg, #D6E5E8 0%, #BACDD1 100%);
+    border-radius: 4px; ;
+  }
+  .service-rec-item:nth-child(3){
+
+    background:  linear-gradient(-135deg, #F4EDD4 0%, #EEDEAB 100%);
+    border-radius: 4px; ;
+  }
+
   .service-rec-item img{
     display: block;
-    width: 100%;
-    height: 3.36rem;
-    background: red;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+    width:120px;
+    height: 120px;
+
+  }
+  .service-rec-item div{
+    position: absolute;
+    padding: 110px 20px 20px 30px;
   }
   .service-rec-item p {
     color: #092235;

@@ -9,31 +9,24 @@
       <div class="top-right">三</div>
     </div>
     <br>
-    <p class="login-create">欢迎回来</p>
+    <p class="login-create">登录</p>
     <br>
     <el-form class="login-form">
-      <el-form-item label="手机号">
-        <el-input></el-input>
+      <el-form-item label="姓名">
+        <el-input v-model="phoneNumber"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input></el-input>
+        <el-input v-model="pwd"></el-input>
       </el-form-item>
-
-
-      <p>
-        点击“注册”或“继续”即表示我同意 Nework 的 <a href="#">服务条款</a> 和 <a href="#">隐私政策</a> 。
+      <p class="login-other">
+        <span>还没有账号? <a @click="$router.push('/register')">去注册</a></span>
+       <a @click="$router.push('/forget')">忘记密码</a>
       </p>
       <br/>
       <el-form-item>
-        <el-button type="primary" size="large">注册</el-button>
+        <el-button type="primary" size="large" @click="login">登录</el-button>
       </el-form-item>
-      <div class="login-msg">
-        <p class="msg-left">还没有账号&nbsp;<a href="#">去注册</a></p>
-        <p class="msg-right"><a href="#">忘记密码</a></p>
-      </div>
-
-      <div class="other-login">你也可以选择第三方登录</div>
-
+      <p class="login-sso">您也可以选择第三方账号登录</p>
       <el-form-item>
         <el-button type="primary" size="large" style="background: #2F9833;border: none ">微信登陆</el-button>
       </el-form-item>
@@ -55,44 +48,62 @@
 </template>
 
 <script>
+
+import request from '../../request.js'
+
+let url = '/login/signIn'
+import Toast from 'vue-toast-mobile';
 export default {
   name: 'App',
   data(){
     return {
       radio3:'上海',
-      phone_region:'cn'
+      phone_region:'cn',
+      phoneNumber:'',
+      pwd:'',
     }
+  },
+  methods:{
+    async login(){
+      let res = await request.post(url,{
+        phoneNumber:this.phoneNumber,
+        pwd:this.pwd,
+      })
+      if(res.data.code == 200){
+        this.$router.push('/')
+      }else{
+        this.$message({
+          showClose: true,
+          message: res.data.desc,
+          type: 'error'
+        });
+      }
+      
+      // 
+    }
+  },
+  mounted(){
+  
+
   }
 }
 </script>
 
 <style>
 #app {
-  /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
-  /*-webkit-font-smoothing: antialiased;*/
-  /*-moz-osx-font-smoothing: grayscale;*/
-  /*text-align: center;*/
-  /*color: #2c3e50;*/
+  
   padding: 0.15rem;
 }
 .el-input-group__append, .el-input-group__prepend{
   /*padding: 0 50px;*/
 }
   .login-top{
-    position: relative;
-  }
-  .top-left{
-    position: absolute;
-    left: 0;
-    top: 0;
-    vertical-align: middle;
-    line-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .top-right{
-    position: absolute;
-    right: 0;
-    top: 0;
-    vertical-align: middle;
+
     line-height: 30px;
     color: #008BF7;
   }
@@ -111,17 +122,14 @@ export default {
     font-size: 14px;
     color:#151515 ;
   }
-  .msg-left{
-    float: left;
-
+  .login-other{
+    display: flex;
+    justify-content: space-between;
   }
-  .msg-right{
-    float: right;
-  }
-  .other-login{
-    padding-top: 50px;
+  .login-form.login-sso{
+    color: #000000;
     font-size: 20px;
-    color: #092235;
-    padding-bottom: 20px;
+    margin: 30px 0 20px 0;
+    font-weight: bold;
   }
 </style>

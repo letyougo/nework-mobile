@@ -1,38 +1,19 @@
 <template>
-  <div class="skill8">
+  <div class="skill9">
     <div class="skill-top">
       <p class="skill-title">nework</p>
       <el-progress :percentage="20"></el-progress>
-      <p class="skill-desc">您希望使用哪种身份证件进行认证？</p>
 
+      <p class="skill-desc">你已提交实名认证</p>
       <br/>
-      <el-form>
-        <el-form-item label="签发国家/地区">
-          <el-input></el-input>
-        </el-form-item>
-      </el-form>
-
-      <table border="1" cellspacing="0">
-        <tr >
-
-          <td>
-            <div >
-              <img src="/static/imgs/identity-passport.png" width="50px" height="50px"/>
-            </div>
-            <p>护照</p>
-          </td>
-          <td >
-            <div >
-              <img src="/static/imgs/identity-idcard.png" width="50px" height="50px"/>
-            </div>
-            <p>身份证</p>
-          </td>
-
-        </tr>
-      </table>
-      <br/>
-      <p class="skill-tip">你的身份信息不会透露给顾客和其他服务商</p>
-
+      <p class="skill-tip">
+        <i class="iconfont">&#xe785;</i>
+        你的身份信息不会透露给顾客和其他服务商
+      </p>
+      <p class="skill-tip">
+        <i class="iconfont">&#xe77e;</i>
+        你的身份信息不会透露给顾客和其他服务商
+      </p>
     </div>
 
     <skill-bottom></skill-bottom>
@@ -45,7 +26,7 @@
   import SkillBottom from '../../components/skill-bottom'
 
   export default {
-    name: 'skill',
+    name: 'skill9',
     data(){
       return {
         active:'0',
@@ -73,11 +54,24 @@
 
   td{
     width: 3.45rem;
-    padding: 12px 0;
+    padding: 41px 0;
     margin: 0;
   }
   td.active{
     border-color: #33a2f9;
+  }
+  td p i{
+    font-size: 20px;
+    color: #33a2f9;
+  }
+  .skill-info{
+    color: rgba(0,0,0,0.6);
+    text-align: center;
+    line-height: 30px;
+  }
+  .skill-tip{
+    line-height: 30px;
+    color: rgba(0,0,0,0.6);
   }
   table,table tr th, table tr td { border:1px solid #d2d2d2; }
   table {  min-height: 25px; line-height: 25px; text-align: center; border-collapse: collapse;}

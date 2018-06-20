@@ -31,7 +31,7 @@
       </el-form>
     </div>
 
-    <skill-bottom></skill-bottom>
+    <skill-bottom :onNext='cb'></skill-bottom>
 
 
 
@@ -40,16 +40,30 @@
 <script>
   import SkillBottom from '../../components/skill-bottom'
   import progress from '../../components/progress'
+  import request from '../../request'
   export default {
       name:'skill',
     components:{
         SkillBottom
+    },
+    methods:{
+      cb(){
+        this.$router.push('/skill2')
+      },
+      async fetch(){
+        let res = await request.get('/district/listDistrictByParam')
+        console.log(res.data)
+      }
+    },
+    mounted(){
+      this.fetch()
     }
   }
 </script>
 <style>
   .skill{
-    padding: 0.3rem;
+
+    position: relative;
   }
   .skill-title{
     font-size: 30px;

@@ -15,7 +15,9 @@ div,p,span,ul,li{
   url('/static/iconfont/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
   url('/static/iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
-
+.el-input__inner{
+  border-width: 0.5px;
+}
 .iconfont {
   font-family:"iconfont" !important;
   font-size:16px;
@@ -25,12 +27,23 @@ div,p,span,ul,li{
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+h3{
+  margin: 20px 0;
+  font-size: 30px;
+}
 button{
   width: 100%;
 }
 .el-input__inner{
   width: 100%;
+}
+.el-message{
+  min-width: inherit;
+  width: 320px;
+  margin: 0 auto;
+}
+.el-input-group__append{
+  background: #ffffff;
 }
 a{
   color: #008BF7;
@@ -51,8 +64,11 @@ ul,li{
   font-weight: bold;
   line-height: 40px;
 }
+.skill{
+  position: relative;
+}
 .skill-top{
-  padding: 0.3rem;
+  padding: 0.3rem 0.3rem 100px 0.3rem;
 }
 .el-progress__text{
   display: none;
