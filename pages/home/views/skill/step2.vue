@@ -3,7 +3,7 @@
     <div class="skill-top">
       <p class="skill-title">nework</p>
       <el-progress :percentage="20"></el-progress>
-      <p class="skill-desc">你打算在什么地方开始工作</p>
+      <p class="skill-desc">您打算开始什么类型的工作？</p>
       <service-list :list="list" :active="active" @change="(i)=>active=i"></service-list>
       <br/>
       <el-form>
@@ -19,14 +19,14 @@
   </div>
 </template>
 <script>
-
+  import {getServiceList} from '../../../service/skill/index'
   import serviceList from '../../components/service-list.vue'
   import SkillBottom from '../../components/skill-bottom'
   export default {
     name: 'skill',
     data(){
       return {
-        active:'0',
+        active:5,
         list:[
           {name:'家政',url:'/static/imgs/jiazheng.png'},
           {name:'美容美甲',url:'/static/imgs/meijia.png'},
@@ -46,9 +46,19 @@
         ]
       }
     },
+    methods:{
+      async fetch(){
+        let districtId=localStorage.getItem('districtId')
+        let res = await getServiceList({districtId})
+        console.log(res)
+      }
+    },
     components: {
       serviceList,
       SkillBottom
+    },
+    mounted(){
+      this.fetch()
     }
   }
 
