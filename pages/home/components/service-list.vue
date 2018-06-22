@@ -2,23 +2,23 @@
   <div class="service-list">
 
     <table border="1" cellspacing="0">
-      <tr v-for=" i in list.length/3">
+      <tr v-for=" i in 4">
         <!--{{list[i].name}}-->
-        <td :class="true ?'active':'no' ">
-          <div v-if="list[(i-1)*3+0].url">
+        <td v-if=" !list[(i-1)*3+0].empty " :class=" 'active' ? list[(i-1)*3+0].active:''  " >
+          <div v-if="list[(i-1)*3+0].url" @click="$emit('change',(i-1)*3+0)">
             <img :src="list[(i-1)*3+0].url" width="50px" height="50px"/>
           </div>
           <p>{{list[(i-1)*3+0].name}}</p>
         </td>
-        <td :class=" active/3==i  ?'active':'no' ">
-          <div v-if="list[(i-1)*3+0].url">
+        <td  v-if=" !list[(i-1)*3+1].empty " :class=" 'active' ? list[(i-1)*3+1].active:''  ">
+          <div v-if="list[(i-1)*3+1].url" @click="$emit('change',(i-1)*3+1)">
             <img :src="list[(i-1)*3+1].url" width="50px" height="50px"/>
           </div>
 
           <p>{{list[(i-1)*3+1].name}}</p>
         </td>
-        <td  :class=" active/3==i ?'active':'no' ">
-          <div v-if="list[(i-1)*3+0].url">
+        <td  v-if=" !list[(i-1)*3+2].empty " :class=" 'active' ? list[(i-1)*3+2].active:''  ">
+          <div v-if="list[(i-1)*3+2].url" @click="$emit('change',(i-1)*3+2)">
             <img :src="list[(i-1)*3+2].url" width="50px" height="50px"/>
           </div>
           <p>{{list[(i-1)*3+2].name}}</p>
@@ -38,6 +38,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
+      Math:Math
     }
   },
   methods:{

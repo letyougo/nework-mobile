@@ -4,7 +4,7 @@
       <p class="skill-title">nework</p>
       <el-progress :percentage="20"></el-progress>
       <p class="skill-desc">您打算开始什么类型的工作？</p>
-      <service-list :list="list" :active="active" @change="(i)=>active=i"></service-list>
+      <service-list :list="list" :active="active" @change="(i)=>{console.log(i)}"></service-list>
       <br/>
       <el-form>
         <el-form-item label="请输入具体的工作类型">
@@ -26,31 +26,52 @@
     name: 'skill',
     data(){
       return {
-        active:5,
         list:[
-          {name:'家政',url:'/static/imgs/jiazheng.png'},
-          {name:'美容美甲',url:'/static/imgs/meijia.png'},
-          {name:'健康',url:'/static/imgs/jianshen.png'},
-
-          {name:'摄影摄像',url:'/static/imgs/sheying.png'},
-          {name:'上门维修',url:'/static/imgs/weixiu.png'},
-          {name:'教育培训',url:'/static/imgs/peixun.png'},
-
-          {name:'数码维修',url:'/static/imgs/shumaweixiu.png'},
-          {name:'宠物',url:'/static/imgs/chongwu.png'},
-          {name:'活动',url:'/static/imgs/huodong.png'},
-
-          {name:'运动健身',url:'/static/imgs/yundong.png'},
-          {name:'婚礼策划',url:'/static/imgs/hunli.png'},
-          {name:'其它',url:'/static/imgs/qita.png'},
+          // {name:'家政',url:'/static/imgs/jiazheng.png'},
+          // {name:'美容美甲',url:'/static/imgs/meijia.png'},
+          // {name:'健康',url:'/static/imgs/jianshen.png'},
+        //
+        //   {name:'摄影摄像',url:'/static/imgs/sheying.png'},
+        //   {name:'上门维修',url:'/static/imgs/weixiu.png'},
+        //   {name:'教育培训',url:'/static/imgs/peixun.png'},
+        //
+        //   {name:'数码维修',url:'/static/imgs/shumaweixiu.png'},
+        //   {name:'宠物',url:'/static/imgs/chongwu.png'},
+        //   {name:'活动',url:'/static/imgs/huodong.png'},
+        //
+        //   {name:'运动健身',url:'/static/imgs/yundong.png'},
+        //   {name:'婚礼策划',url:'/static/imgs/hunli.png'},
+        //   {name:'其它',url:'/static/imgs/qita.png'},
+        //
         ]
       }
     },
     methods:{
       async fetch(){
         let districtId=localStorage.getItem('districtId')
-        let res = await getServiceList({districtId})
-        console.log(res)
+        let res = await getServiceList({districtId,level:'f'})
+        let list = res.data.data
+        console.log(list,'list')
+        list = list.map((item)=>{
+          item.name = item.serviceTypeName
+          item.url = ''
+          item.empty = false
+          item.active = false
+          return item
+        })
+
+        let yu = 3- list.length%3
+        console.log(yu,'yu')
+        for(var i=0;i<yu;i++){
+          list.push({empty:true})
+        }
+        this.list = list
+
+
+
+        console.log(list,'list')
+        // this.list = list
+
       }
     },
     components: {
