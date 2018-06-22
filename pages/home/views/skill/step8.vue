@@ -48,13 +48,16 @@
     name: 'skill',
     data(){
       return {
-        active:'0',
+
         list:[
           {name:'周一到周五',url:'/static/imgs/shijian.png'},
           {name:'周六',url:'/static/imgs/shijian.png'},
           {name:'周日',url:'/static/imgs/shijian.png'},
         ]
       }
+    },
+    methods:{
+
     },
     components: {
       serviceList,SkillBottom

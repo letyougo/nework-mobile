@@ -2,23 +2,23 @@
   <div class="service-list">
 
     <table border="1" cellspacing="0">
-      <tr v-for=" i in 4">
+      <tr v-for=" i in list.length/3">
         <!--{{list[i].name}}-->
-        <td v-if=" !list[(i-1)*3+0].empty " :class=" 'active' ? list[(i-1)*3+0].active:''  " >
-          <div v-if="list[(i-1)*3+0].url" @click="$emit('change',(i-1)*3+0)">
+        <td v-if=" !list[(i-1)*3+0].empty " :class=" list[(i-1)*3+0].active?'active' :''  " @click="$emit('change',(i-1)*3+0)">
+          <div v-if="list[(i-1)*3+0].url" >
             <img :src="list[(i-1)*3+0].url" width="50px" height="50px"/>
           </div>
           <p>{{list[(i-1)*3+0].name}}</p>
         </td>
-        <td  v-if=" !list[(i-1)*3+1].empty " :class=" 'active' ? list[(i-1)*3+1].active:''  ">
-          <div v-if="list[(i-1)*3+1].url" @click="$emit('change',(i-1)*3+1)">
+        <td  v-if=" !list[(i-1)*3+1].empty "  :class=" list[(i-1)*3+1].active?'active' :''  " @click="$emit('change',(i-1)*3+1)">
+          <div v-if="list[(i-1)*3+1].url" >
             <img :src="list[(i-1)*3+1].url" width="50px" height="50px"/>
           </div>
 
           <p>{{list[(i-1)*3+1].name}}</p>
         </td>
-        <td  v-if=" !list[(i-1)*3+2].empty " :class=" 'active' ? list[(i-1)*3+2].active:''  ">
-          <div v-if="list[(i-1)*3+2].url" @click="$emit('change',(i-1)*3+2)">
+        <td  v-if=" !list[(i-1)*3+2].empty "  :class=" list[(i-1)*3+2].active?'active' :''  "  @click="$emit('change',(i-1)*3+2)">
+          <div v-if="list[(i-1)*3+2].url">
             <img :src="list[(i-1)*3+2].url" width="50px" height="50px"/>
           </div>
           <p>{{list[(i-1)*3+2].name}}</p>

@@ -7,7 +7,7 @@
         </p>
         </el-col>
       <el-col :span="12">
-        <el-button type="primary" @click="onNext">下一步</el-button>
+        <el-button type="primary" @click="$emit('next')">下一步</el-button>
       </el-col>
     </el-row>
   </div>
@@ -22,7 +22,8 @@
     props:['onNext'],
     mounted() {
 
-    }
+    },
+
   }
 </script>
 
@@ -34,7 +35,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    right: 0; 
+    right: 0;
   }
   .skill-bottom i{
     color: #008BF7;

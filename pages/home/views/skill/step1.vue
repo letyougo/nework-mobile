@@ -35,7 +35,10 @@
       </el-form>
     </div>
 
-    <skill-bottom :onNext='cb'></skill-bottom>
+    <div class="bottom">
+      <skill-bottom @next='cb'></skill-bottom>
+    </div>
+
 
 
 

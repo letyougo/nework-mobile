@@ -80,3 +80,9 @@ ul,li{
   padding-right: 0;
   margin-right: 0;
 }
+.bottom{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

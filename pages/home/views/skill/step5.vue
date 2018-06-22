@@ -6,14 +6,14 @@
       <p class="skill-desc">简单的介绍下你自己</p>
       <el-form>
         <el-form-item label="简介">
-          <el-input type="textarea" :autosize="{ minRows: 6, maxRows: 6}"></el-input>
+          <el-input type="textarea" :autosize="{ minRows: 6, maxRows: 6}" v-model="description"></el-input>
         </el-form-item>
       </el-form>
 
       <br/>
     </div>
 
-    <skill-bottom></skill-bottom>
+    <skill-bottom @next="next"></skill-bottom>
 
   </div>
 </template>
@@ -26,12 +26,17 @@
     name: 'skill',
     data(){
       return {
-        active:'0',
-        list:[
-          {name:'周一到周五',url:'/static/imgs/shijian.png'},
-          {name:'周六',url:'/static/imgs/shijian.png'},
-          {name:'周日',url:'/static/imgs/shijian.png'},
-        ]
+        description:''
+      }
+    },
+    methods:{
+      next(){
+        if(this.description){
+          localStorage.setItem('description',this.description)
+          this.$router.push('/skill6')
+        }else {
+          this.$message.warning('请输入个人简介')
+        }
       }
     },
     components: {

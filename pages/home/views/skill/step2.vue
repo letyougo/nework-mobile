@@ -4,16 +4,20 @@
       <p class="skill-title">nework</p>
       <el-progress :percentage="20"></el-progress>
       <p class="skill-desc">您打算开始什么类型的工作？</p>
-      <service-list :list="list" :active="active" @change="(i)=>{console.log(i)}"></service-list>
       <br/>
-      <el-form>
-        <el-form-item label="请输入具体的工作类型">
-          <el-input></el-input>
-        </el-form-item>
-      </el-form>
+      <service-list :list="list"  @change="change"></service-list>
+      <br/>
+      <!--<el-form>-->
+        <!--<el-form-item label="请输入具体的工作类型">-->
+          <!--<el-input></el-input>-->
+        <!--</el-form-item>-->
+      <!--</el-form>-->
     </div>
 
-    <skill-bottom></skill-bottom>
+    <div class="bottom">
+      <skill-bottom @next="cb"></skill-bottom>
+    </div>
+
 
 
   </div>
@@ -43,10 +47,28 @@
         //   {name:'婚礼策划',url:'/static/imgs/hunli.png'},
         //   {name:'其它',url:'/static/imgs/qita.png'},
         //
-        ]
+        ],
+
       }
     },
     methods:{
+      cb(){
+        let item = this.list.find((item)=>{
+          return item.active
+        })
+        if(item){
+          this.$router.push('/skill3?serviceTypeId='+item.serviceTypeId)
+        }else {
+          this.$message.warning('请选择类型')
+        }
+      },
+      change(i){
+        this.list = this.list.map((item)=>{
+          item.active = false
+          return item
+        })
+        this.list[i].active = true
+      },
       async fetch(){
         let districtId=localStorage.getItem('districtId')
         let res = await getServiceList({districtId,level:'f'})
@@ -57,6 +79,7 @@
           item.url = ''
           item.empty = false
           item.active = false
+          item.url = '/static/images/' + item.name + '-icon.png'
           return item
         })
 
@@ -85,7 +108,12 @@
 
 </script>
 <style>
-
+  .bottom{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
 
 
 </style>

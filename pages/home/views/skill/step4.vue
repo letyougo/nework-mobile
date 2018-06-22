@@ -4,11 +4,11 @@
       <p class="skill-title">nework</p>
       <el-progress :percentage="20"></el-progress>
       <p class="skill-desc">设置营业时间</p>
-      <service-list :list="list" :active="active" @change="(i)=>active=i"></service-list>
+      <service-list :list="list"  @change="change"></service-list>
       <br/>
     </div>
 
-    <skill-bottom></skill-bottom>
+    <skill-bottom @next="next"></skill-bottom>
 
   </div>
 </template>
@@ -23,14 +23,33 @@
       return {
         active:'0',
         list:[
-          {name:'周一到周五',url:'/static/imgs/shijian.png'},
-          {name:'周六',url:'/static/imgs/shijian.png'},
-          {name:'周日',url:'/static/imgs/shijian.png'},
+          {name:'周一到周五',url:'/static/imgs/shijian.png',active:false,value:'w'},
+          {name:'周六',url:'/static/imgs/shijian.png',active:false,value:'sat'},
+          {name:'周日',url:'/static/imgs/shijian.png',active:false,value:'sun'},
         ]
       }
     },
     components: {
       serviceList,SkillBottom,progress
+    },
+    methods:{
+      change(i){
+        this.list[i].active = !this.list[i].active
+      },
+      next(){
+        let days = this.list
+          .filter(item=>item.active)
+          .map(item=>item.value)
+          .join(',')
+
+
+        if(days){
+          localStorage.setItem('serviceTime',days)
+          this.$router.push('/skill5?')
+        }else {
+          this.$message.warning('请选择时间')
+        }
+      }
     }
   }
 
