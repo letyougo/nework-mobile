@@ -22,8 +22,8 @@ import profile_compony from '../views/profile/compony'
 import profile_edit from '../views/profile/edit/index'
 import skill1 from '../views/profile/edit/skill'
 import skill2 from '../views/profile/edit/skill2'
-import check from '../views/profile/edit/check'
-import phoneCheck from '../views/profile/edit/phone-check'
+import check from '../views/profile/edit/Check'
+import phoneCheck from '../views/profile/edit/PhoneCheck'
 
 import login from '../views/login/index'
 import register from '../views/register/index'
@@ -105,8 +105,8 @@ export default new Router({
       component:profile_compony
     },
     {
-      path:'/profile/edit',
-      name:'profile_edit',
+      path:'/profile',
+      name:'profile',
       component:profile_edit
     },
     {
@@ -147,7 +147,7 @@ export default new Router({
       component:register
     },
 
-    
+
     {
       path:'/forget',
       name:'forget',

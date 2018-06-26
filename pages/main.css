@@ -29,6 +29,9 @@ div,p,span,ul,li{
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
+.el-upload{
+  display: block;
+}
 
 h3{
   margin: 20px 0;
@@ -79,4 +82,7 @@ ul,li{
 .el-progress-bar{
   padding-right: 0;
   margin-right: 0;
+}
+.el-upload-list{
+  display: none;
 }

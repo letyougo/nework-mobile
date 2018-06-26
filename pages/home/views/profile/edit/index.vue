@@ -1,37 +1,123 @@
 <template>
-    <div class="edit">
-      <el-tabs v-model="activeName2" type="card">
-        <el-tab-pane label="基本资料" name="first">
-          <edit-base></edit-base>
-        </el-tab-pane>
-        <el-tab-pane label="照片" name="second">
-          <edit-photo></edit-photo>
-        </el-tab-pane>
-        <el-tab-pane label="技能" name="third">
-          <edit-skill></edit-skill>
-        </el-tab-pane>
-        <el-tab-pane label="认证" name="fourth">
-          <Check/>
-        </el-tab-pane>
-        <el-tab-pane label="账号余额" name="fourth"></el-tab-pane>
-        <el-tab-pane label="交易记录" name="fourth"></el-tab-pane>
-      </el-tabs>
+    <div >
+
+      <div class="item-list">
+        <div @click="active=0" v-bind:class="{active:active==0}">资料</div>
+        <div @click="active=1" v-bind:class="{active:active==1}" >照片</div>
+        <div @click="active=2" v-bind:class="{active:active==2 || active=='2-1' || active=='2-2'}" >技能</div>
+        <div @click="active=3" v-bind:class="{active:active==3}" >认证</div>
+        <div @click="active=4" v-bind:class="{active:active==4}" >余额</div>
+        <div @click="active=5" v-bind:class="{active:active==5}">记录</div>
+      </div>
+
+      <div class="edit">
+        <edit-base v-if="active == 0" :item="item"></edit-base>
+        <edit-photo  v-if="active == 1" :item="item"></edit-photo>
+        <edit-skill  v-if="active == 2" :list="skill"  @add=" active='2-1'  "></edit-skill>
+        <skill1  v-if="active == '2-1'" :list="skill" @ok="ok1"></skill1>
+        <skill2  v-if="active == '2-2'" :list="skill" :id="typeId" @ok="ok2"></skill2>
+        <Check v-if="active == 3" :item="item"/>
+      </div>
+
+
+
+
+
 
     </div>
 </template>
 
 <script>
-  import EditBase from './base'
-  import EditPhoto from './photo'
+  import EditBase from './Base'
+  import EditPhoto from './Photo'
   import EditSkill from './skill'
-  import Check from './check'
+  import Skill1 from './skill1'
+  import Skill2 from './skill2'
+  import Check from './Check'
+
+  import {getUserById} from '../../../../service/editData'
+  import {getSkillList} from '../../../../service/skill'
+  import {releaseSkill} from '../../../../service/skill'
   export default {
     name: "edit",
     components:{
       EditPhoto,
       EditBase,
       EditSkill,
-      Check
+      Check,
+      Skill1,
+      Skill2
+    },
+    data(){
+      return {
+        active:0,
+        item:{
+          nickname:''
+        },
+        skill:[],
+        typeId:''
+      }
+    },
+    methods:{
+
+      ok1(id){
+        this.typeId = id
+        this.active = '2-2'
+      },
+
+      async ok2(){
+        let res = await releaseSkill({
+          districtId:localStorage.getItem('districtId'),
+          userId:localStorage.getItem('userId'),
+          location:localStorage.getItem('location'),
+          specAddr:localStorage.getItem('specAddr'),
+          serviceTime:localStorage.getItem('serviceTime'),
+          serviceIds:localStorage.getItem('serviceIds'),
+        })
+        if(res.data.code == 200){
+          this.$message.success('发布技能成功')
+          this.active = '2'
+        }
+      },
+
+      async fetch(){
+
+        let res = await getUserById({userId:localStorage.getItem('userId')})
+        let item = res.data.data
+        item.serviceTime = item.serviceTime.split(',')
+        console.log(item,'item')
+        this.item = item
+      },
+
+      async fetchSkill(){
+        let res = await getSkillList({userId:localStorage.getItem('userId')})
+        res = res.data.data.skill
+        console.log(res,'res')
+        let skill = []
+
+        Object.keys(res).map(key=>{
+
+          skill = skill.concat(res[key])
+          return key
+        })
+
+        skill = skill.map(item=> {
+          item.url = '/static/images/' + item.firstServiceTypeName + '-icon.png'
+          return item
+        } )
+
+        // skill = skill.map(item=>{
+        //   item.url =
+        // })
+
+        this.skill = skill
+
+
+      }
+    },
+    mounted(){
+      this.fetch()
+      this.fetchSkill()
     }
   }
 </script>
@@ -44,6 +130,22 @@
     font-size: 30px;
     margin: 0;
     padding: 0;
+  }
+
+  .item-list{
+    display: flex;
+    justify-content: space-around;
+    background: #F6F8F9;
+    height: 70px;
+  }
+  .item-list>div{
+
+    color: #092235 ;
+    line-height: 70px;
+    font-size: 20px;
+  }
+  .item-list>div.active{
+    color: #008BF7;
   }
 
 </style>

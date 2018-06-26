@@ -3,49 +3,50 @@
     <div class="skill-top">
       <p class="skill-title">nework</p>
       <el-progress :percentage="20"></el-progress>
+      <p class="skill-desc">上传证件及本人照片</p>
       <br/>
 
-      <table border="1" cellspacing="0">
-        <tr >
-          <td>
-            <p>
-              <i class="iconfont">&#xe766;</i>
-            </p>
-          </td>
-          <td >
-            <p>
-              <i class="iconfont">&#xe766;</i>
-            </p>
-          </td>
-        </tr>
-      </table>
-      <el-row>
+      <el-row :gutter="10">
         <el-col :span="12">
-          <div class="skill-info">正面照片（个人信息）</div>
+          <upload
+            :action=" 'http://nework-web.rdc.waibaodashi.com/qiniu/uploadUserFile?column=id_card_positive&userId='+userId "
+
+          >
+          </upload>
         </el-col>
+
         <el-col :span="12">
-          <div class="skill-info">正面照片（个人信息）</div>
+          <upload
+            :action=" 'http://nework-web.rdc.waibaodashi.com/qiniu/uploadUserFile?column=id_card_negative&userId='+userId "
+
+          ></upload>
         </el-col>
       </el-row>
 
-
-      <table border="1" cellspacing="0">
-        <tr >
-          <td>
-            <p>
-              <i class="iconfont">&#xe766;</i>
-            </p>
-          </td>
-
-        </tr>
-      </table>
       <el-row>
+        <el-col :span="12">
+          <div class="skill-info">正面照片（个人信息）</div>
+        </el-col>
         <el-col :span="12">
           <div class="skill-info">背面照片（国徽）</div>
         </el-col>
-
       </el-row>
 
+      <el-row>
+        <el-col :span="12">
+         <upload
+           :action=" 'http://nework-web.rdc.waibaodashi.com/qiniu/uploadUserFile?column=photo&userId='+userId "
+         >
+
+         </upload>
+        </el-col>
+
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <div class="skill-info">本人照片</div>
+        </el-col>
+      </el-row>
       <br/>
       <p class="skill-tip">
         <i class="iconfont">&#xe785;</i>
@@ -57,7 +58,10 @@
       </p>
     </div>
 
-    <skill-bottom></skill-bottom>
+    <div class="bottom">
+      <skill-bottom @next="$router.push('/skill11')"></skill-bottom>
+    </div>
+
 
   </div>
 </template>
@@ -65,7 +69,7 @@
 
   import serviceList from '../../components/service-list.vue'
   import SkillBottom from '../../components/skill-bottom'
-
+  import upload from '../../components/upload'
   export default {
     name: 'skill9',
     data(){
@@ -75,16 +79,19 @@
           {name:'周一到周五',url:'/static/imgs/shijian.png'},
           {name:'周六',url:'/static/imgs/shijian.png'},
           {name:'周日',url:'/static/imgs/shijian.png'},
-        ]
+        ],
+        userId:localStorage.getItem('userId'),
       }
     },
     components: {
-      serviceList,SkillBottom
+      serviceList,SkillBottom,upload
     }
   }
 
 </script>
 <style scoped>
+
+
 
   .skill-tip{
     font-size: 14px;
@@ -97,6 +104,7 @@
     width: 3.45rem;
     padding: 41px 0;
     margin: 0;
+    position: relative;
   }
   td.active{
     border-color: #33a2f9;

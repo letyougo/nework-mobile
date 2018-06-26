@@ -1,34 +1,30 @@
 <template>
     <div class="edit-skill">
       <h3>我的技能</h3>
+      <p class="tip">我们将根据你当前的技能，匹配合适你的工作。</p>
       <div class="skill-list">
-        <div class="skill-item">
-          <img src="/static/imgs/shijian.png"/>
-          <p>室内保洁</p>
-          <span>技能1</span>
-        </div>
 
-        <div class="skill-item">
-          <img src="/static/imgs/shijian.png"/>
-          <p>室内保洁</p>
-          <span>技能1</span>
-        </div>
 
-        <div class="skill-item">
-          <img src="/static/imgs/shijian.png"/>
-          <p>室内保洁</p>
-          <span>技能1</span>
+        <div class="skill-item" v-for=" item in list ">
+          <img :src=" item.url "/>
+          <p>{{item.firstServiceTypeName}}</p>
+          <span>{{item.secondServiceTypeName}}</span>
+
+          <div class="delete">
+            <i class="iconfont icon-delete1" >&#xe783;</i>
+          </div>
+
         </div>
 
       </div>
 
       <el-form>
         <el-form-item>
-          <el-button type="primary">添加技能</el-button>
+          <el-button type="primary" @click="$emit('add')">添加技能</el-button>
         </el-form-item>
       </el-form>
 
-      <service-list :list="list"></service-list>
+      <!--<service-list :list="list"></service-list>-->
 
     </div>
 </template>
@@ -38,26 +34,11 @@
   export default {
     data(){
       return {
-        list:[
-          {name:'家政',url:'/static/imgs/jiazheng.png'},
-          {name:'美容美甲',url:'/static/imgs/meijia.png'},
-          {name:'健康',url:'/static/imgs/jianshen.png'},
 
-          {name:'摄影摄像',url:'/static/imgs/sheying.png'},
-          {name:'上门维修',url:'/static/imgs/weixiu.png'},
-          {name:'教育培训',url:'/static/imgs/peixun.png'},
-
-          {name:'数码维修',url:'/static/imgs/shumaweixiu.png'},
-          {name:'宠物',url:'/static/imgs/chongwu.png'},
-          {name:'活动',url:'/static/imgs/huodong.png'},
-
-          {name:'运动健身',url:'/static/imgs/yundong.png'},
-          {name:'婚礼策划',url:'/static/imgs/hunli.png'},
-          {name:'其它',url:'/static/imgs/qita.png'},
-        ]
       }
     },
     name: "edit-skill",
+    props:['list'],
     components:{
       serviceList
     }
@@ -68,6 +49,22 @@
   h3{
     font-size: 30px;
     margin: 0;
+  }
+
+  .delete{
+    position: ;
+  }
+
+  i{
+    font-size: 20px;
+    color: blue;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+  .tip{
+    color: rgba(0,0,0,0.6);
+    margin: 20px 0 10px 0;
   }
   .skill-list{
     display: flex;
@@ -83,6 +80,13 @@
     text-align: center;
     padding: 10px 0;
     margin-top: 25px;
+    position: relative;
+  }
+  .skill-item:nth-child(1){
+    margin-top: 0;
+  }
+  .skill-item:nth-child(2){
+    margin-top: 0;
   }
   .skill-item span{
     color: rgba(0,0,0,0.6);

@@ -3,28 +3,32 @@
     <div class="skill-top">
       <p class="skill-title">nework</p>
       <el-progress :percentage="20"></el-progress>
+      <p class="skill-desc">上传证件及本人照片</p>
       <br/>
-
-      <table border="1" cellspacing="0">
-        <tr >
-          <td>
-            <p>
-              <i class="iconfont">&#xe766;</i>
-            </p>
-          </td>
-          <td >
-            <p>
-              <i class="iconfont">&#xe766;</i>
-            </p>
-          </td>
-        </tr>
-      </table>
-      <el-row>
+      <el-row :gutter="10">
         <el-col :span="12">
-          <div class="skill-info">正面照片（个人信息）</div>
+          <upload
+            :action=" 'http://nework-web.rdc.waibaodashi.com/qiniu/uploadUserFile?column=passport_pic&userId='+userId "
+          >
+
+          </upload>
         </el-col>
         <el-col :span="12">
-          <div class="skill-info">正面照片（个人信息）</div>
+          <upload
+            :action=" 'http://nework-web.rdc.waibaodashi.com/qiniu/uploadUserFile?column=photo&userId='+userId "
+          >
+
+          </upload>
+        </el-col>
+      </el-row>
+
+
+      <el-row>
+        <el-col :span="12">
+          <div class="skill-info">护照个人信息页）</div>
+        </el-col>
+        <el-col :span="12">
+          <div class="skill-info">本人照片</div>
         </el-col>
       </el-row>
 
@@ -39,7 +43,7 @@
       </p>
     </div>
 
-    <skill-bottom></skill-bottom>
+    <skill-bottom @next="$router.push('/skill11')"></skill-bottom>
 
   </div>
 </template>
@@ -47,7 +51,7 @@
 
   import serviceList from '../../components/service-list.vue'
   import SkillBottom from '../../components/skill-bottom'
-
+  import upload from '../../components/upload'
   export default {
     name: 'skill9',
     data(){
@@ -57,11 +61,12 @@
           {name:'周一到周五',url:'/static/imgs/shijian.png'},
           {name:'周六',url:'/static/imgs/shijian.png'},
           {name:'周日',url:'/static/imgs/shijian.png'},
-        ]
+        ],
+        userId:localStorage.getItem('userId'),
       }
     },
     components: {
-      serviceList,SkillBottom
+      serviceList,SkillBottom,upload
     }
   }
 

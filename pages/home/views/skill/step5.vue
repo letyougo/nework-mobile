@@ -6,14 +6,14 @@
       <p class="skill-desc">简单的介绍下你自己</p>
       <el-form>
         <el-form-item label="简介">
-          <el-input type="textarea" :autosize="{ minRows: 6, maxRows: 6}"></el-input>
+          <el-input type="textarea" :autosize="{ minRows: 6, maxRows: 6}" v-model="description"></el-input>
         </el-form-item>
       </el-form>
 
       <br/>
     </div>
 
-    <skill-bottom></skill-bottom>
+    <skill-bottom @next="next"></skill-bottom>
 
   </div>
 </template>
@@ -22,16 +22,30 @@
   import serviceList from '../../components/service-list.vue'
   import SkillBottom from '../../components/skill-bottom'
   import progress from '../../components/progress'
+
+  import {updateUser} from '../../../service/editData'
   export default {
     name: 'skill',
     data(){
       return {
-        active:'0',
-        list:[
-          {name:'周一到周五',url:'/static/imgs/shijian.png'},
-          {name:'周六',url:'/static/imgs/shijian.png'},
-          {name:'周日',url:'/static/imgs/shijian.png'},
-        ]
+        description:''
+      }
+    },
+    methods:{
+      async next(){
+        if(this.description){
+
+
+          localStorage.setItem('description',this.description)
+          let res = await updateUser({userId:localStorage.getItem('userId'),description:this.description})
+          if(res.data.code == 200){
+            this.$message.success('修改个人简介成功')
+          }
+
+          this.$router.push('/skill6')
+        }else {
+          this.$message.warning('请输入个人简介')
+        }
       }
     },
     components: {

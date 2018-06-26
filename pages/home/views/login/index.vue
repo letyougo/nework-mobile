@@ -16,7 +16,7 @@
         <el-input v-model="phoneNumber"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="pwd"></el-input>
+        <el-input v-model="pwd" type="password"></el-input>
       </el-form-item>
       <p class="login-other">
         <span>还没有账号? <a @click="$router.push('/register')">去注册</a></span>
@@ -52,7 +52,6 @@
 import request from '../../request.js'
 
 let url = '/login/signIn'
-import Toast from 'vue-toast-mobile';
 export default {
   name: 'App',
   data(){
@@ -70,6 +69,8 @@ export default {
         pwd:this.pwd,
       })
       if(res.data.code == 200){
+        localStorage.setItem('userId',res.data.data.userId)
+
         this.$router.push('/')
       }else{
         this.$message({
@@ -78,12 +79,12 @@ export default {
           type: 'error'
         });
       }
-      
-      // 
+
+      //
     }
   },
   mounted(){
-  
+
 
   }
 }
@@ -91,7 +92,7 @@ export default {
 
 <style>
 #app {
-  
+
   padding: 0.15rem;
 }
 .el-input-group__append, .el-input-group__prepend{

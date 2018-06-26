@@ -7,10 +7,17 @@
         </div>
         <p>北京</p>
         <div class="top-right">
-          <router-link to="/login">资料</router-link>
+          <router-link to="/profile">资料</router-link>
           <router-link to="/skill1">技能</router-link>
-          <router-link to="/login">登录</router-link>
-          <router-link to="/register">注册</router-link>
+
+          <span v-if="!login">
+              <router-link to="/login">登录</router-link>
+              <router-link to="/register">注册</router-link>
+          </span>
+          <span v-else>
+              <router-link to="/register">我要工作</router-link>
+              <span >{{nickname}}</span>
+          </span>
         </div>
       </div>
 
@@ -24,7 +31,7 @@
 
       <div class="service">
         <service-list :list="list" :active="active" @change="(i)=>active=i"></service-list>
-      </div>ds
+      </div>
 
 
       <div class="service-item">
@@ -104,6 +111,7 @@
 
 <script>
 
+  import {getUserById} from '../../../service/editData'
   import serviceList from '../../components/service-list.vue'
   export default {
     name: 'App',
@@ -128,11 +136,30 @@
           {name:'运动健身',url:'/static/imgs/yundong.png'},
           {name:'婚礼策划',url:'/static/imgs/hunli.png'},
           {name:'其它',url:'/static/imgs/qita.png'},
-        ]
+        ],
+        nickname:'',
+        login:false
+
       }
     },
     components:{
       serviceList
+    },
+    methods:{
+      async init(){
+        let userId = localStorage.getItem('userId')
+
+        if(userId){
+          let res = await getUserById({userId})
+          this.nickname = res.data.data.nickname
+          this.login =true
+        }else {
+
+        }
+      }
+    },
+    mounted(){
+      this.init()
     }
   }
 </script>
