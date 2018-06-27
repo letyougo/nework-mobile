@@ -1,9 +1,11 @@
-import axios from 'axios'
+import axios from '../config'
 import qs from 'qs'
-import { baseUrl } from '../config'
 
-export const releaseSkill = data => axios.post(`${baseUrl}/skill/postSkill`, qs.stringify(data))
 
-export const getServiceList = params => axios(`${baseUrl}/service/listServiceByParam`, { params })
+export const releaseSkill = data => axios.post(`/skill/postSkill`, qs.stringify(data))
 
-export const getSkillList = params => axios(`${baseUrl}/skill/getSkillByUserId`, { params })
+export const getServiceList = params => axios(`/service/listServiceByParam`, { params })
+
+export const getSkillList = params => axios(`/skill/getSkillByUserId`, { params })
+
+export const deleteSkillList = params => axios(`/skill/deleteSkill`, { params } )

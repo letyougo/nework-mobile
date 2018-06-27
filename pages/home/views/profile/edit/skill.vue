@@ -10,7 +10,7 @@
           <p>{{item.firstServiceTypeName}}</p>
           <span>{{item.secondServiceTypeName}}</span>
 
-          <div class="delete">
+          <div class="delete" @click="remove(item)">
             <i class="iconfont icon-delete1" >&#xe783;</i>
           </div>
 
@@ -31,6 +31,7 @@
 
 <script>
   import serviceList from '../../../components/service-list.vue'
+  import {deleteSkillList} from '../../../../service/skill'
   export default {
     data(){
       return {
@@ -39,6 +40,16 @@
     },
     name: "edit-skill",
     props:['list'],
+    methods:{
+      async remove(item){
+
+        let res = await deleteSkillList({skillId:item.skillId,isTemp:false})
+
+        this.$message.success('删除技能成功')
+        this.$emit('remove')
+
+      }
+    },
     components:{
       serviceList
     }
@@ -52,15 +63,19 @@
   }
 
   .delete{
-    position: ;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 40px;
+    width: 40px;
+    padding-top: 10px;
   }
 
   i{
     font-size: 20px;
-    color: blue;
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
+    color: #F8513C;
+    display: block;
+    margin: 0 auto;
   }
   .tip{
     color: rgba(0,0,0,0.6);

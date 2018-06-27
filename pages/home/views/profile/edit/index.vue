@@ -5,7 +5,7 @@
         <div @click="active=0" v-bind:class="{active:active==0}">资料</div>
         <div @click="active=1" v-bind:class="{active:active==1}" >照片</div>
         <div @click="active=2" v-bind:class="{active:active==2 || active=='2-1' || active=='2-2'}" >技能</div>
-        <div @click="active=3" v-bind:class="{active:active==3}" >认证</div>
+        <div @click="active=3" v-bind:class="{active:active==3 || active=='3-1' || active== '3-2' || active=='3-3'}" >认证</div>
         <div @click="active=4" v-bind:class="{active:active==4}" >余额</div>
         <div @click="active=5" v-bind:class="{active:active==5}">记录</div>
       </div>
@@ -13,10 +13,15 @@
       <div class="edit">
         <edit-base v-if="active == 0" :item="item"></edit-base>
         <edit-photo  v-if="active == 1" :item="item"></edit-photo>
-        <edit-skill  v-if="active == 2" :list="skill"  @add=" active='2-1'  "></edit-skill>
+        <edit-skill  v-if="active == 2" :list="skill"  @add=" active='2-1'  "  @remove="ok"></edit-skill>
         <skill1  v-if="active == '2-1'" :list="skill" @ok="ok1"></skill1>
         <skill2  v-if="active == '2-2'" :list="skill" :id="typeId" @ok="ok2"></skill2>
-        <Check v-if="active == 3" :item="item"/>
+
+
+        <Check v-if="active == 3" :item="item"   @card=" active='3-3' "   @phone="active='3-1'" @email=" active='3-2' "  />
+        <phone-check v-if="active == '3-1'"></phone-check>
+        <email-check v-if="active == '3-2'"></email-check>
+        <idcard-check v-if=" active=='3-3' "></idcard-check>
       </div>
 
 
@@ -34,19 +39,26 @@
   import Skill1 from './skill1'
   import Skill2 from './skill2'
   import Check from './Check'
-
+  import PhoneCheck from './phone-check'
+  import EmailCheck from './email-check'
   import {getUserById} from '../../../../service/editData'
   import {getSkillList} from '../../../../service/skill'
   import {releaseSkill} from '../../../../service/skill'
+  import Phone from "./Phone";
+  import IdcardCheck from './idcard-check'
   export default {
     name: "edit",
     components:{
+      Phone,
       EditPhoto,
       EditBase,
       EditSkill,
       Check,
       Skill1,
-      Skill2
+      Skill2,
+      PhoneCheck,
+      EmailCheck,
+      IdcardCheck
     },
     data(){
       return {
@@ -63,6 +75,10 @@
       ok1(id){
         this.typeId = id
         this.active = '2-2'
+      },
+
+      async ok(){
+        this.fetchSkill()
       },
 
       async ok2(){
