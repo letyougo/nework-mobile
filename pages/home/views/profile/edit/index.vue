@@ -6,7 +6,7 @@
         <div @click="active=1" v-bind:class="{active:active==1}" >照片</div>
         <div @click="active=2" v-bind:class="{active:active==2 || active=='2-1' || active=='2-2'}" >技能</div>
         <div @click="active=3" v-bind:class="{active:active==3 || active=='3-1' || active== '3-2' || active=='3-3'}" >认证</div>
-        <div @click="active=4" v-bind:class="{active:active==4}" >余额</div>
+        <div @click="active=4" v-bind:class="{active:active==4}" >安全</div>
         <div @click="active=5" v-bind:class="{active:active==5}">记录</div>
       </div>
 
@@ -19,9 +19,10 @@
 
 
         <Check v-if="active == 3" :item="item"   @card=" active='3-3' "   @phone="active='3-1'" @email=" active='3-2' "  />
-        <phone-check v-if="active == '3-1'"></phone-check>
-        <email-check v-if="active == '3-2'"></email-check>
-        <idcard-check v-if=" active=='3-3' "></idcard-check>
+        <phone-check v-if="active == '3-1'" @ok=" active=3 "></phone-check>
+        <email-check v-if="active == '3-2'"  @ok=" active=3 "></email-check>
+        <idcard-check v-if=" active=='3-3' " @ok=" active=3 "></idcard-check>
+        <password v-if="active==4 " ></password>
       </div>
 
 
@@ -46,6 +47,7 @@
   import {releaseSkill} from '../../../../service/skill'
   import Phone from "./Phone";
   import IdcardCheck from './idcard-check'
+  import password from './password'
   export default {
     name: "edit",
     components:{
@@ -58,7 +60,14 @@
       Skill2,
       PhoneCheck,
       EmailCheck,
-      IdcardCheck
+      IdcardCheck,
+      password
+    },
+    watch:{
+      active(){
+        this.fetch()
+        this.fetchSkill()
+      }
     },
     data(){
       return {
@@ -143,7 +152,7 @@
     padding: 0.3rem;
   }
   h3{
-    font-size: 30px;
+    font-size: 20px;
     margin: 0;
     padding: 0;
   }

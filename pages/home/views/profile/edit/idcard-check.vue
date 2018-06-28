@@ -9,7 +9,7 @@
         <el-col :span="12">
           <upload
             :action=" 'http://nework-web.rdc.waibaodashi.com/qiniu/uploadUserFile?column=id_card_positive&userId='+userId "
-
+            @success="ok1"
           >
           </upload>
         </el-col>
@@ -17,7 +17,7 @@
         <el-col :span="12">
           <upload
             :action=" 'http://nework-web.rdc.waibaodashi.com/qiniu/uploadUserFile?column=id_card_negative&userId='+userId "
-
+            @success="ok2"
           ></upload>
         </el-col>
       </el-row>
@@ -35,6 +35,7 @@
         <el-col :span="12">
          <upload
            :action=" 'http://nework-web.rdc.waibaodashi.com/qiniu/uploadUserFile?column=photo&userId='+userId "
+            @success="ok3"
          >
 
          </upload>
@@ -57,9 +58,7 @@
       </p>
     </div>
 
-    <div class="bottom">
-      <skill-bottom @next="$router.push('/skill11')"></skill-bottom>
-    </div>
+    <el-button type="primary" @click="$emit('ok')">确定</el-button>
 
 
   </div>
@@ -68,6 +67,7 @@
 
   import SkillBottom from '../../../components/skill-bottom'
   import upload from '../../../components/upload'
+  import {updateUser} from '../../../../service/editData'
   export default {
     name: 'skill9',
     data(){
@@ -75,6 +75,32 @@
         active:'0',
 
         userId:localStorage.getItem('userId'),
+      }
+    },
+    methods:{
+      async ok1(img){
+
+
+        let res = await updateUser({
+          userId:localStorage.getItem('userId'),
+          idCardPositive:img
+        })
+      },
+      async ok2(img){
+
+        let res = await updateUser({
+          userId:localStorage.getItem('userId'),
+          idCardNegative:img
+        })
+      },
+      async ok3(img){
+        let res = await updateUser({
+          userId:localStorage.getItem('userId'),
+          avatar:img
+        })
+      },
+      async save(){
+        this.$emit('ok')
       }
     },
     components: {

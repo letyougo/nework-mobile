@@ -14,7 +14,7 @@
     <el-form class="login-form">
        <el-form-item label="手机号">
         <el-input v-model="phoneNumber">
-         
+
         </el-input>
       </el-form-item>
       <el-form-item label="输入验证码">
@@ -25,11 +25,11 @@
       <el-form-item label="新密码">
         <el-input v-model="pwd"></el-input>
       </el-form-item>
-   
+
       <el-form-item>
         <el-button type="primary" size="large" @click="login">确定</el-button>
       </el-form-item>
-  
+
     </el-form>
 
 
@@ -48,8 +48,6 @@ let url = '/login/signIn'
 let sendcode ='/login/forgot/sendCode'
 let forget ='login/forgot'
 
-
-import Toast from 'vue-toast-mobile';
 export default {
   name: 'App',
   data(){
@@ -76,8 +74,8 @@ export default {
           type: 'error'
         });
       }
-      
-      // 
+
+      //
     },
 
     async sendcode(){
@@ -104,7 +102,7 @@ export default {
     }
   },
   mounted(){
-  
+
 
   }
 }
@@ -112,7 +110,7 @@ export default {
 
 <style>
 #app {
-  
+
   padding: 0.15rem;
 }  .login-top{
     display: flex;

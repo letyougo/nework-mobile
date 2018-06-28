@@ -17,9 +17,10 @@
           <div>
             <el-checkbox size="huge" :checked="  !!item.idCardNegative && !!item.idCardPositive  "></el-checkbox>
           </div>
-          <div>
-            没有认证
+          <div v-if="!!item.idCardNegative && !!item.idCardPositive">
+            已实名认证
           </div>
+          <div v-else>未实名认证</div>
         </div>
 
       </div>
@@ -32,16 +33,17 @@
         <div class="tip">使用经过验证的手机号可以令沟通变得更容易；
           我们将通过短信给您发送代码，或透过电话通话向您告知该代码。</div>
         <div class="action">
-          <el-button type="primary" @click="$emit('phoneNumber')"> 认证</el-button>
+          <el-button type="primary" @click="$emit('phone')"> 认证</el-button>
         </div>
 
         <div class="is-check">
           <div>
             <el-checkbox size="huge" :checked=" !!item.phoneNumber "></el-checkbox>
           </div>
-          <div>
-            没有认证
+          <div v-if="!!item.phoneNumber">
+            认证手机号：{{item.phoneNumber}}
           </div>
+          <div v-else>暂未进行手机号验证</div>
         </div>
       </div>
 
@@ -59,9 +61,11 @@
           <div>
             <el-checkbox size="huge" :checked="  !!item.email "></el-checkbox>
           </div>
-          <div>
-            没有认证
+          <div v-if="!!item.email">
+            认证邮箱：{{item.email}}
           </div>
+          <div v-else>暂未进行手机号验证</div>
+        </div>
         </div>
       </div>
     </div>

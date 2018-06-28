@@ -23,7 +23,7 @@ import profile_edit from '../views/profile/edit/index'
 import skill1 from '../views/profile/edit/skill'
 import skill2 from '../views/profile/edit/skill2'
 import check from '../views/profile/edit/Check'
-import phoneCheck from '../views/profile/edit/PhoneCheck'
+
 
 import login from '../views/login/index'
 import register from '../views/register/index'
@@ -129,11 +129,6 @@ export default new Router({
       component:profile
     },
 
-    {
-      path:'/profile/phone_check',
-      name:'phone-check',
-      component:phoneCheck
-    },
 
     {
       path:'/login',
