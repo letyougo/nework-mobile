@@ -32,7 +32,9 @@ div,p,span,ul,li{
 .el-upload{
   display: block;
 }
-
+.el-input-group__append, .el-input-group__prepend{
+  padding: 0 50px;
+}
 h3{
   margin: 20px 0;
   font-size: 30px;
@@ -82,4 +84,11 @@ ul,li{
 .el-progress-bar{
   padding-right: 0;
   margin-right: 0;
+}
+.bottom{
+  position: fixed;
+  left: 0;
+  right: 0;
+
+  bottom: 0;
 }

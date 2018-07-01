@@ -11,7 +11,6 @@ request.interceptors.request.use((req)=> {
 })
 
 
-console.log(app.$message,'app.message')
 request.interceptors.response.use((res)=> {
   return res
 },(error)=>{

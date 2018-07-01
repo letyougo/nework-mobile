@@ -1,16 +1,6 @@
 <template>
   <div class="register">
-    <div class="login-top">
-      <div class="top-left">
-        <span>北京</span>&nbsp;
-        <a href="#">切换</a>
-      </div>
-      <p>Nework</p>
-      <div class="top-right">三</div>
-    </div>
-    <br>
-    <p class="login-create">创建账号</p>
-    <br>
+
     <el-form class="login-form">
       <el-form-item label="姓名">
         <el-input v-model='nickName'></el-input>
@@ -18,16 +8,16 @@
       <el-form-item label="密码">
         <el-input v-model='pwd'></el-input>
       </el-form-item>
-  
+
       <el-form-item label="手机号码">
         <el-input  v-model="phoneNumber" class="input-with-select">
           <el-select v-model="select" slot="prepend" placeholder="Select">
             <el-option label="+86" value="cn"></el-option>
-  
+
           </el-select>
         </el-input>
       </el-form-item>
-  
+
       <el-form-item label="验证码">
         <el-input placeholder="请输入内容" v-model="code" class="input-with-select">
           <el-button slot="append" >发送验证码</el-button>
@@ -41,9 +31,9 @@
         <el-button type="primary" size="large">注册</el-button>
       </el-form-item>
       <p>已经有账号了,<a href="#" @click="$router.push('/login')">去登录</a></p>
-  
-  
-  
+
+
+
     </el-form>
   </div>
 </template>
@@ -73,7 +63,7 @@
           pwd: this.pwd,
           code: this.code
         })
-  
+
         if (res.data.code == 200) {
           this.$router.push('/')
         } else {
@@ -92,18 +82,8 @@
   .register {
     padding: 0.15rem;
   }
-  
-  .login-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .top-right {
-    line-height: 30px;
-    color: #008BF7;
-  }
-  
+
+
   .login-top p {
     text-align: center;
     line-height: 30px;
@@ -111,12 +91,12 @@
     font-size: 20px;
     vertical-align: middle;
   }
-  
+
   .login-create {
     font-size: 30px;
     text-align: left;
   }
-  
+
   .login-form p {
     font-size: 14px;
     color: #151515;

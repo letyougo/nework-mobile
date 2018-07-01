@@ -28,7 +28,23 @@ import check from '../views/profile/edit/Check'
 import login from '../views/login/index'
 import register from '../views/register/index'
 import forget from '../views/forget/index.vue'
-
+import demand from '../views/demand/home'
+import question from '../views/demand/question'
+import result from '../views/demand/result'
+import record from '../views/demand/record'
+import recordItem from '../views/demand/record-item'
+import rate from '../views/demand/rate'
+import complain from '../views/demand/complain'
+import cast from '../views/demand/cast'
+import price from '../views/demand/price'
+import alprice from '../views/demand/aleady-price'
+import pricewin from '../views/demand/price-win'
+import feemiss from '../views/demand/fee-miss'
+import orderdel from '../views/demand/order-del'
+import startpay from '../views/demand/start-pay'
+import buycard from '../views/demand/buy-card'
+import message from '../views/demand/message'
+import im from '../views/demand/im'
 Vue.use(Router)
 
 export default new Router({
@@ -147,6 +163,103 @@ export default new Router({
       path:'/forget',
       name:'forget',
       component:forget
+    },
+
+    {
+      path:'/demand',
+      name:'demand',
+      component:demand
+    },
+
+    {
+      path:'/question',
+      name:'question',
+      component:question
+    },
+
+
+    {
+      path:'/result',
+      name:'result',
+      component:result
+    },
+
+    {
+      path:'/record',
+      name:'record',
+      component:record
+    },
+
+    {
+      path:'/recordItem',
+      name:'recordItem',
+      component:recordItem
+    },
+
+    {
+      path:'/rate',
+      name:'rate',
+      component:rate
+    },
+
+    {
+      path:'/complain',
+      name:'complain',
+      component:complain
+    },
+
+    {
+      path:'/cast',
+      name:'cast',
+      component:cast
+    },
+
+    {
+      path:'/price',
+      name:'price',
+      component:price
+    },
+
+
+    {
+      path:'/alprice',
+      name:'alprice',
+      component:alprice
+    },
+    {
+      path:'/pricewin',
+      name:'pricewin',
+      component:pricewin
+    },
+    {
+      path:'/feemiss',
+      name:'feemiss',
+      component:feemiss
+    },
+    {
+      path:'/orderdel',
+      name:'order-del',
+      component:orderdel
+    },
+    {
+      path:'/startpay',
+      name:'startpay',
+      component:startpay
+    },
+    {
+      path:'/buycard',
+      name:'buycard',
+      component:buycard
+    },
+    {
+      path:'/message',
+      name:'message',
+      component:message
+    },
+    {
+      path:'/im',
+      name:'im',
+      component:im
     },
   ]
 })

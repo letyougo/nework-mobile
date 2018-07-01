@@ -1,36 +1,16 @@
 <template>
   <div >
     <div class="app">
-      <div class="home-top">
-        <div class="top-left">
-          Nework&nbsp;
-        </div>
-        <p>北京</p>
-        <div class="top-right">
-          <router-link to="/profile">资料</router-link>
-          <router-link to="/skill1">技能</router-link>
 
-          <span v-if="!login">
-              <router-link to="/login">登录</router-link>
-              <router-link to="/register">注册</router-link>
-          </span>
-          <span v-else>
-              <router-link to="/register">我要工作</router-link>
-              <span >{{nickname}}</span>
-          </span>
-        </div>
-      </div>
-
-      <br><br>
       <div class="home-title">
-        <p>Nework</p>
+        <!--<p>Nework</p>-->
         <p>找到所有本地专业服务</p>
       </div>
       <br>
       <el-input></el-input>
 
       <div class="service">
-        <service-list :list="list" :active="active" @change="(i)=>active=i"></service-list>
+        <service-list :list="list"  @change="change"></service-list>
       </div>
 
 
@@ -113,29 +93,16 @@
 
   import {getUserById} from '../../../service/editData'
   import serviceList from '../../components/service-list.vue'
+  import Top from '../../components/top'
+  import {getServiceList} from '../../../service/skill/index'
   export default {
     name: 'App',
     data(){
       return {
-        radio3:'上海',
-        phone_region:'cn',
-        active:'0',
+
+
         list:[
-          {name:'家政',url:'/static/imgs/jiazheng.png'},
-          {name:'美容美甲',url:'/static/imgs/meijia.png'},
-          {name:'健康',url:'/static/imgs/jianshen.png'},
 
-          {name:'摄影摄像',url:'/static/imgs/sheying.png'},
-          {name:'上门维修',url:'/static/imgs/weixiu.png'},
-          {name:'教育培训',url:'/static/imgs/peixun.png'},
-
-          {name:'数码维修',url:'/static/imgs/shumaweixiu.png'},
-          {name:'宠物',url:'/static/imgs/chongwu.png'},
-          {name:'活动',url:'/static/imgs/huodong.png'},
-
-          {name:'运动健身',url:'/static/imgs/yundong.png'},
-          {name:'婚礼策划',url:'/static/imgs/hunli.png'},
-          {name:'其它',url:'/static/imgs/qita.png'},
         ],
         nickname:'',
         login:false
@@ -145,21 +112,50 @@
     components:{
       serviceList
     },
+
     methods:{
-      async init(){
-        let userId = localStorage.getItem('userId')
 
-        if(userId){
-          let res = await getUserById({userId})
-          this.nickname = res.data.data.nickname
-          this.login =true
-        }else {
+      change(i){
+        this.list = this.list.map((item)=>{
+          item.active = false
+          return item
+        })
 
+
+        this.list[i].active = true
+        let item = this.list[i]
+        this.$router.push(`/demand?id=${item.serviceTypeId}&name=${item.serviceTypeName}`)
+      },
+
+      async fetch(){
+        let districtId=localStorage.getItem('districtId')
+        let res = await getServiceList({districtId,level:'f'})
+        let list = res.data.data
+        console.log(list,'list')
+        list = list.map((item)=>{
+          item.name = item.serviceTypeName
+          item.url = ''
+          item.empty = false
+          item.active = false
+          item.url = '/static/images/' + item.name + '-icon.png'
+          return item
+        })
+
+        let yu = 3- list.length%3
+
+        for(var i=0;i<yu;i++){
+          list.push({empty:true})
         }
+        this.list = list
+
+
+
+
       }
     },
+
     mounted(){
-      this.init()
+      this.fetch()
     }
   }
 </script>
@@ -173,29 +169,8 @@
     /*color: #2c3e50;*/
     padding: 0.3rem;
   }
-  .el-input-group__append, .el-input-group__prepend{
-    /*padding: 0 50px;*/
-  }
-  .home-top{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .home-top p{
-    text-align: center;
-    line-height: 30px;
-  }
-  .top-left{
-    vertical-align: middle;
-    line-height: 30px;
-    font-size: 20px;
-    color: #092235;
-  }
-  .top-right{
-    vertical-align: middle;
-    line-height: 30px;
-    color: #008BF7;
-  }
+
+
 
   .home-title p{
     font-size: 30px;

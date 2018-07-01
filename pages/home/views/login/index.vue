@@ -1,13 +1,6 @@
 <template>
   <div id="app">
-    <div class="login-top">
-      <div class="top-left">
-        <span>北京</span>&nbsp;
-        <a href="#">切换</a>
-      </div>
-      <p>nework</p>
-      <div class="top-right">三</div>
-    </div>
+
     <br>
     <p class="login-create">登录</p>
     <br>
