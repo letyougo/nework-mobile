@@ -29,15 +29,20 @@
             </el-form-item>
 
 
+
           </div>
         </div>
+
+        <el-form-item>
+
+          <el-button type="primary">确定</el-button>
+        </el-form-item>
 
       </el-form>
 
     </div>
 
 
-    <el-button type="primary">确定</el-button>
   </div>
 </template>
 

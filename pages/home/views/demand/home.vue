@@ -49,15 +49,125 @@
         他们离您的当前位置较近，可迅速到达服务地点，响应您的诉求...
       </p>
 
-      <div class="near-list">
-        <div class="near-item">
-          <div class="item-head">
-            <div class="logo"></div>
-            <div>立即预约</div>
-          </div>
-          <p>Ron Heard</p>
 
+      <div class="list">
+        <div class="item">
+          <div class="item-top">
+            <div class="item-logo">苏</div>
+            <div class="item-chat">
+              <i class="icon iconfont">&#xe78b;</i>
+              <span>立即预约</span>
+            </div>
+          </div>
+          <p class="item-name">Jimmy Song</p>
+          <div class="item-star">
+            <div class="stars">
+              <i class="icon iconfont">&#xe786;</i>
+              <i class="icon iconfont">&#xe786;</i>
+              <i class="icon iconfont">&#xe786;</i>
+            </div>
+            <div class="score">4.7</div>
+            <div class="comment">(12条评价)</div>
+          </div>
+          <div class="item-trade">
+            <div>
+              <i class="icon iconfont">&#xe77f;</i>
+              <span>被雇佣 128 次</span>
+            </div>
+            <div>
+              <i class="icon iconfont">&#xe780;;</i>
+              <span>已加入3年2个月</span>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="comment">
+            <p>秋水饮马<span>的评论</span></p>
+            <div>3天前</div>
+          </div>
+          <div class="content">
+            我们认同这座城市所赋予的精神及社会价值,公平、活力、创造、包容。虽然可能在不同…
+          </div>
+          <div class="action">查看更多</div>
         </div>
+
+
+        <div class="item">
+          <div class="item-top">
+            <div class="item-logo">苏</div>
+            <div class="item-chat">
+              <i class="icon iconfont">&#xe78b;</i>
+              <span>立即预约</span>
+            </div>
+          </div>
+          <p class="item-name">Jimmy Song</p>
+          <div class="item-star">
+            <div class="stars">
+              <i class="icon iconfont">&#xe786;</i>
+              <i class="icon iconfont">&#xe786;</i>
+              <i class="icon iconfont">&#xe786;</i>
+            </div>
+            <div class="score">4.7</div>
+            <div class="comment">(12条评价)</div>
+          </div>
+          <div class="item-trade">
+            <div>
+              <i class="icon iconfont">&#xe77f;</i>
+              <span>被雇佣 128 次</span>
+            </div>
+            <div>
+              <i class="icon iconfont">&#xe780;;</i>
+              <span>已加入3年2个月</span>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="comment">
+            <p>秋水饮马<span>的评论</span></p>
+            <div>3天前</div>
+          </div>
+          <div class="content">
+            我们认同这座城市所赋予的精神及社会价值,公平、活力、创造、包容。虽然可能在不同…
+          </div>
+          <div class="action">查看更多</div>
+        </div>
+
+
+        <div class="item">
+          <div class="item-top">
+            <div class="item-logo">苏</div>
+            <div class="item-chat">
+              <i class="icon iconfont">&#xe78b;</i>
+              <span>立即预约</span>
+            </div>
+          </div>
+          <p class="item-name">Jimmy Song</p>
+          <div class="item-star">
+            <div class="stars">
+              <i class="icon iconfont">&#xe786;</i>
+              <i class="icon iconfont">&#xe786;</i>
+              <i class="icon iconfont">&#xe786;</i>
+            </div>
+            <div class="score">4.7</div>
+            <div class="comment">(12条评价)</div>
+          </div>
+          <div class="item-trade">
+            <div>
+              <i class="icon iconfont">&#xe77f;</i>
+              <span>被雇佣 128 次</span>
+            </div>
+            <div>
+              <i class="icon iconfont">&#xe780;;</i>
+              <span>已加入3年2个月</span>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="no-comment">
+            <i class="icon iconfont">&#xe78a;</i>暂无评论
+          </div>
+        </div>
+      </div>
+
+      <div class="load-more">
+        <i class="icon iconfont">&#xe789;</i>加载更多
       </div>
     </div>
 
@@ -72,17 +182,18 @@
     name: "home",
 
     methods: {
-      fetch(){
-        getNearbySKill({serviceId:this.$route.query.id,userId:localStorage.getItem('userId')})
+      fetch() {
+        getNearbySKill({serviceId: this.$route.query.id, userId: localStorage.getItem('userId')})
       }
     },
-    mounted(){
+    mounted() {
       this.fetch()
-    }
+    },
+
   }
 </script>
 
-<style scoped>
+<style scoped >
   .demand-home {
 
     width: 100%;
@@ -159,4 +270,128 @@
     font-size: 14px;
     color: rgba(0, 0, 0, 0.6);
   }
+
+  .list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .item:first-child{
+    margin-top: 0;
+  }
+  .item{
+    width: 100%;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(0,0,0,0.05);
+    padding:30px;
+  }
+  .item-top{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .item-logo{
+    width: 50px;
+    height: 50px;
+    color: #ffffff;
+    background: #0a6cd6;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+  }
+  .item-chat i{
+    color: #008BF7;
+  }
+  .item-chat span{
+    margin-left: 10px;
+    display: inline-block;
+    color: #008BF7;
+  }
+  .item-money{
+    color: #008BF7;
+  }
+
+  .item-name{
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .item-star{
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+  }
+  .stars{
+    color: #F79F00;
+    font-size: 14px;
+    margin-right: 20px;
+
+  }
+  .score{
+    margin-right: 20px;
+  }
+  .comment{
+    color: rgba(0,0,0,0.6);
+  }
+
+  .item-trade{
+    margin-top: 20px;
+    color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: space-between;
+  }
+  .action{
+    margin-top: 10px;
+
+    color: #008BF7;
+    text-decoration: underline;
+  }
+
+  .line{
+    margin: 30px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  .comment{
+    display: flex;
+    justify-content: space-between;
+  }
+  .comment p{
+    color: #000000;
+  }
+  .comment p span{
+    font-size: 12px;
+    margin-left: 10px;
+    color: rgba(0,0,0,0.6);
+  }
+  .comment div{
+    font-size: 12px;
+    color: rgba(0,0,0,0.6);
+  }
+  .content{
+    margin-top: 10px;
+  }
+
+  .no-comment{
+    text-align: center;
+    color: rgba(0,0,0,0.6);
+    padding: 20px 0;
+  }
+  .no-comment i{
+    margin-right: 10px;
+  }
+
+  .load-more{
+    margin-top: 30px;
+    color: #008BF7;
+    text-align: center;
+  }
+  .load-more i{
+    margin-right: 10px;
+
+  }
+
 </style>

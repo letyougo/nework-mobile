@@ -12,16 +12,8 @@ request.interceptors.request.use(function (config) {
     if(/qiniu/.test(config.url)){
       return config
     }
-    // if(config.method=='post'){
-    //     let data = config.data
-    //     let form = new FormData()
-    //     for(var key in data){
-    //         form.append(key,data[key])
-    //     }
-    //     config.data = form
-    //     config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-    //     return config;
-    // }
+
+    config.data = qs.stringify(config.data)
     return config;
   }, function (error) {
     vue.$message.error(error)

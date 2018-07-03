@@ -24,10 +24,14 @@ import skill1 from '../views/profile/edit/skill'
 import skill2 from '../views/profile/edit/skill2'
 import check from '../views/profile/edit/Check'
 
-
+//账号
 import login from '../views/login/index'
 import register from '../views/register/index'
 import forget from '../views/forget/index.vue'
+import city from '../views/home/city'
+
+
+//需求订单
 import demand from '../views/demand/home'
 import question from '../views/demand/question'
 import result from '../views/demand/result'
@@ -53,6 +57,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/city',
+      name: 'city',
+      component: city
     },
     {
       path: '/skill1',

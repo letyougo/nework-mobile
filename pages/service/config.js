@@ -7,7 +7,7 @@ request.defaults.baseURL = 'http://nework-web.rdc.waibaodashi.com'
 request.interceptors.request.use((req)=> {
   return req
 },(error)=>{
-  app.$message.error(error)
+
 })
 
 
@@ -15,7 +15,7 @@ request.interceptors.response.use((res)=> {
   return res
 },(error)=>{
   console.log(error,'dsdsds')
-  app.$message.error(error)
+
 })
 
 

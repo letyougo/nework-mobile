@@ -1,14 +1,6 @@
 <template>
   <div id="app">
-    <div class="login-top">
-      <div class="top-left">
-        <span>北京</span>&nbsp;
-        <a href="#">切换</a>
-      </div>
-      <p>nework</p>
-      <div class="top-right">三</div>
-    </div>
-    <br>
+
     <p class="login-create">忘记密码</p>
     <br>
     <el-form class="login-form">
@@ -27,7 +19,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" size="large" @click="login">确定</el-button>
+        <el-button type="primary" size="large" @click="save">确定</el-button>
       </el-form-item>
 
     </el-form>
@@ -43,7 +35,7 @@
 
 import request from '../../request.js'
 
-let url = '/login/signIn'
+
 
 let sendcode ='/login/forgot/sendCode'
 let forget ='login/forgot'
@@ -60,28 +52,14 @@ export default {
     }
   },
   methods:{
-    async login(){
-      let res = await request.post(url,{
-        phoneNumber:this.phoneNumber,
-        pwd:this.pwd,
-      })
-      if(res.data.code == 200){
-        this.$router.push('/')
-      }else{
-        this.$message({
-          showClose: true,
-          message: res.data.desc,
-          type: 'error'
-        });
-      }
 
-      //
-    },
 
     async sendcode(){
       let res = await request.post(sendcode,{
         phoneNumber:this.phoneNumber
       })
+
+
     },
     async save(){
       let res = await request.post(forget,{
@@ -91,7 +69,7 @@ export default {
       })
 
         if(res.data.code == 200){
-        this.$router.push('/')
+        this.$router.push('/login')
       }else{
         this.$message({
           showClose: true,

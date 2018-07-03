@@ -7,7 +7,10 @@
         <p>找到所有本地专业服务</p>
       </div>
       <br>
-      <el-input></el-input>
+
+      <div class="home-search">
+        <i class="icon iconfont">&#xe77b;</i><input placeholder="试试「 小程序开发 」" v-model="search"/><div class="action">搜索</div>
+      </div>
 
       <div class="service">
         <service-list :list="list"  @change="change"></service-list>
@@ -16,26 +19,23 @@
 
       <div class="service-item">
 
-        <div class="service-item-content">
-          <img src="/static/imgs/zhongdiangong.png">
-          <p >美容美甲</p>
-          <span>来做美容美甲吧</span>
-        </div>
+
       </div>
       <br>
       <div class="service-item">
         <div class="service-item-content">
-          <img src="/static/imgs/zhongdiangong.png">
-          <p >美容美甲</p>
-          <span>来做美容美甲吧</span>
+          <img src="/static/images/保洁.png">
+          <p >保洁</p>
+          <span>128 服务商在您附近</span>
         </div>
+
       </div>
 
       <div class="service-item">
         <div class="service-item-content">
-          <img src="/static/imgs/zhongdiangong.png">
-          <p >美容美甲</p>
-          <span>来做美容美甲吧</span>
+          <img src="/static/images/宠物寄养.png">
+          <p >宠物寄养</p>
+          <span>128 服务商在您附近</span>
         </div>
       </div>
       <br>
@@ -53,16 +53,16 @@
         <div class="service-rec-item">
           <img src="/static/imgs/home-price.png">
           <div>
-            <p>回答需求问卷</p>
-            <span>耗时1min左右，需要您简单选择几个问题，以便于服务人员清楚您的需要</span>
+            <p>服务人员报价</p>
+            <span>服务人员将根据您的回答响应您的诉求，我们将推荐1位或者更多供您选择</span>
           </div>
         </div>
 
         <div class="service-rec-item">
           <img src="/static/imgs/home-onsite.png">
           <div>
-            <p>回答需求问卷</p>
-            <span>耗时1min左右，需要您简单选择几个问题，以便于服务人员清楚您的需要</span>
+            <p>线下享受服务</p>
+            <span>服务人员将上门为您服务，您可为服务的感受和满意程度打分</span>
           </div>
         </div>
       </div>
@@ -70,22 +70,38 @@
 
     <br><br><br>
     <div class="home-bottom">
-      <p class="home-bottom-title">Nework</p>
+      <div class="home-bottom-title">
+        <div class="title-name">Nework</div>
+        <div class="logo">
+          <span>
+            <i class="icon iconfont">&#xe77a;</i>
+          </span>
+          <span>
+            <i class="icon iconfont">&#xe779;</i>
+          </span>
+          <span>
+            <i class="icon iconfont">&#xe778;</i>
+          </span>
+
+        </div>
+      </div>
+
       <div>
         <p class="home-bottom-title2">Nework</p>
-        <p>电话:xxxxx</p>
-        <p>电话:xxxxx</p>
-        <p>电话:xxxxx</p>
+        <p>电话  010-57026742</p>
+        <p>邮箱  service@pmcaff.com</p>
+        <p>官方网站 nework.pro</p>
       </div>
       <br><br>
       <div>
-        <p>Nework</p>
-        <p>电话:xxxxx</p>
-        <p>电话:xxxxx</p>
-        <p>电话:xxxxx</p>
+        <p class="home-bottom-title2">Nework</p>
+        <p><a href="https://www.pmcaff.com">PMCAFF.com</a></p>
+        <p><a href="http://www.waibaodashi.com">外包大师</a></p>
+        <p><a href="http://atdesigner.pmcaff.com">@设计狮</a></p>
       </div>
+      <p class="home-bt">© Nework 2018</p>
     </div>
-    <p class="home-bt">© Nework 2018</p>
+
   </div>
 </template>
 
@@ -105,7 +121,8 @@
 
         ],
         nickname:'',
-        login:false
+        login:false,
+        search:''
 
       }
     },
@@ -160,7 +177,7 @@
   }
 </script>
 
-<style>
+<style lang="less">
   .app {
     /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
     /*-webkit-font-smoothing: antialiased;*/
@@ -170,7 +187,43 @@
     padding: 0.3rem;
   }
 
+  .home-search{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #008BF7;
+    height: 50px;
+    align-items: center;
 
+    box-shadow: 0 5px 20px 0 rgba(9,34,53,0.10);
+    border-radius: 4px;
+    font-size: 14px;
+    input {
+      flex: 1;
+      height:40px;
+      &:focus{
+        outline: none;
+        border: none;
+      }
+    }
+    i {
+      display: block;
+      width: 50px;
+      font-size: 20px;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.6)
+    }
+
+    div{
+      height: 40px;
+      background: #008BF7;
+      border-radius: 2px;
+      width: 80px;
+      margin-right: 10px;
+      text-align: center;
+      line-height: 40px;
+      color: #ffffff;
+    }
+  }
 
   .home-title p{
     font-size: 30px;
@@ -247,30 +300,67 @@
     line-height: 30px;
   }
   .service-rec-item span{
-    color: #9CA6AE;
+    color: rgba(0,0,0,0.6);
     line-height: 20px;
     font-size: 14px;
   }
   .home-bottom{
     background: #F6F8F9;
-    padding: 40px 0.3rem  29.4px 0.3rem;
+    padding: 40px 0.3rem 0 0.3rem;
   }
-  .home-bottom-title{
+  .home-bottom .home-bottom-title{
     padding-bottom: 40px;
-    color: #092235 ;
-    font-size: 20px;
+
+
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+  .home-bottom-title .title-name{
+    font-size: 40px;
+  }
+  .home-bottom-title .logo span{
+
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+    font-size: 20px;
+    color: #ffffff;
+  }
+
+  .home-bottom-title .logo span:nth-child(1){
+      background: rgb(15, 176, 71);
+    }
+  .home-bottom-title .logo span:nth-child(2){
+    background: #219FEF;
+  }
+  .home-bottom-title .logo span:nth-child(3){
+    background: #292929 ;
+  }
+
   .home-bottom p{
-    color: #092235 ;
+
     font-size: 14px;
     line-height: 30px;
+    color: rgba(0,0,0,0.6) ;
   }
-  .home-bottom-title2{
-    color: #9CA6AE;
+  .home-bottom p a{
+    text-decoration: none;
+    color: rgba(0,0,0,0.6) ;
   }
-  .home-bt{
+  .home-bottom .home-bottom-title2{
+    color: rgba(0,0,0,0.8);
+  }
+  .home-bottom .home-bt{
     color: #9CA6AE;
+    border-top: 1px solid rgba(0,0,0,0.05);
     text-align: center;
-    line-height: 50px;
+    line-height: 80px;
+    height: 80px;
   }
 </style>

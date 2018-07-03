@@ -156,7 +156,7 @@
 	}
 </script>
 
-<style scoped>
+<style scoped l>
   .record{
     padding: 0.3rem;
   }
